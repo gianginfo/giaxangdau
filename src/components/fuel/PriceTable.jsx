@@ -23,7 +23,7 @@ export default function PriceTable({ prices, loading }) {
   }
 
   return (
-    <section className="relative px-6 md:px-12 lg:px-[8vw] py-[10vh]">
+    <section className="relative px-6 md:px-12 lg:px-[8vw] py-[10vh] hidden">
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export default function PriceTable({ prices, loading }) {
         className="mb-12">
         
         <span className="text-lime text-xs uppercase tracking-[0.3em] font-body block mb-3 hidden">Bảng giá chi tiết</span>
-        <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95]">
+        <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95] hidden">
           06 mặt hàng<br />
           <span className="text-concrete hidden">nhiên liệu</span>
         </h2>
