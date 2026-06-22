@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import GhostLine from "@/components/fuel/GhostLine";
-import ThemeToggle from "@/components/fuel/ThemeToggle";
+import Header from "@/components/fuel/Header";
 import HeroSection from "@/components/fuel/HeroSection";
 import FuelSearch from "@/components/fuel/FuelSearch";
+import PriceTrendChart from "@/components/fuel/PriceTrendChart";
 import PriceTable from "@/components/fuel/PriceTable";
 import NoticeSection from "@/components/fuel/NoticeSection";
 import CommitmentSection from "@/components/fuel/CommitmentSection";
@@ -33,11 +34,12 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-obsidian overflow-hidden">
-      <ThemeToggle />
+      <Header />
       <GhostLine />
 
       <HeroSection heroImage={HERO_IMAGE} />
       <FuelSearch />
+      <PriceTrendChart prices={prices} loading={loading} />
       <PriceTable prices={prices} loading={loading} />
       <NoticeSection detailImage={DETAIL_IMAGE} />
       <CommitmentSection />
