@@ -18,16 +18,16 @@ export default function PriceCard({ item, index }) {
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <div className="relative bg-[#111113] border border-[#1e1e22] rounded-sm p-5 md:p-6 hover:border-[#D1FF52]/30 transition-all duration-500">
+      <div className="relative bg-card border border-card rounded-sm p-5 md:p-6 hover:border-lime-30 transition-all duration-500">
         {/* Index number */}
-        <span className="absolute top-4 right-5 text-[#2a2a2e] font-display font-black text-5xl md:text-6xl leading-none select-none">
+        <span className="absolute top-4 right-5 text-faint font-display font-black text-5xl md:text-6xl leading-none select-none">
           {String(index + 1).padStart(2, "0")}
         </span>
 
         {/* Fuel type badge */}
         <div className="flex items-center gap-2 mb-4">
           <div className={`flex items-center justify-center w-8 h-8 rounded-sm ${
-            item.fuel_type === "gasoline" ? "bg-[#D1FF52]/10 text-lime" :
+            item.fuel_type === "gasoline" ? "bg-lime-10 text-lime" :
             item.fuel_type === "diesel" ? "bg-blue-500/10 text-blue-400" :
             "bg-orange-500/10 text-orange-400"
           }`}>
@@ -62,10 +62,10 @@ export default function PriceCard({ item, index }) {
         </div>
 
         {/* Diff indicator */}
-        <div className="mt-4 pt-4 border-t border-[#1e1e22]">
+        <div className="mt-4 pt-4 border-t border-card">
           <div className="flex items-center justify-between">
             <span className="text-concrete text-[11px] uppercase tracking-[0.12em]">Chênh lệch vùng</span>
-            <span className={`font-display font-semibold text-sm ${isUp ? "text-[#D1FF52]" : "text-emerald-400"}`}>
+            <span className={`font-display font-semibold text-sm ${isUp ? "text-lime" : "text-emerald-400"}`}>
               {isUp ? "+" : ""}{formatPrice(diff)} đ
             </span>
           </div>

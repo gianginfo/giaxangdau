@@ -8,7 +8,7 @@ export default function PriceTable({ prices, loading }) {
       <section className="px-6 md:px-12 lg:px-[8vw] py-[10vh]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[...Array(6)].map((_, i) =>
-          <div key={i} className="bg-[#111113] border border-[#1e1e22] rounded-sm p-6 animate-pulse">
+          <div key={i} className="bg-card border border-card rounded-sm p-6 animate-pulse">
               <div className="h-4 bg-[#1e1e22] rounded w-1/3 mb-4" />
               <div className="h-6 bg-[#1e1e22] rounded w-2/3 mb-6" />
               <div className="grid grid-cols-2 gap-4">

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function FooterSection() {
   return (
-    <footer className="relative px-6 md:px-12 lg:px-[8vw] py-[8vh] border-t border-[#1e1e22]">
+    <footer className="relative px-6 md:px-12 lg:px-[8vw] py-[8vh] border-t border-card">
       {/* Big CTA text */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export default function FooterSection() {
       </motion.div>
 
       {/* Footer links */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-[#1e1e22]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-card">
         <div>
           <p className="text-concrete text-[11px] uppercase tracking-[0.2em] font-body mb-4">Công ty</p>
           <ul className="space-y-2">

@@ -40,9 +40,9 @@ export default function SourcesSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-center gap-4 p-5 bg-[#111113] border border-[#1e1e22] rounded-sm hover:border-[#D1FF52]/30 transition-all duration-300 group"
+            className="flex items-center gap-4 p-5 bg-card border border-card rounded-sm hover:border-lime-30 transition-all duration-300 group"
           >
-            <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-[#1e1e22] flex items-center justify-center group-hover:bg-[#D1FF52]/10 transition-colors">
+            <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-card flex items-center justify-center group-hover:bg-lime-10 transition-colors">
               <Newspaper className="w-4 h-4 text-concrete group-hover:text-lime transition-colors" />
             </div>
             <span className="text-parchment font-body text-sm flex-1">{src.label}</span>

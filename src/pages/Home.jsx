@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import GhostLine from "@/components/fuel/GhostLine";
+import ThemeToggle from "@/components/fuel/ThemeToggle";
 import HeroSection from "@/components/fuel/HeroSection";
 import FuelSearch from "@/components/fuel/FuelSearch";
 import PriceTable from "@/components/fuel/PriceTable";
@@ -32,6 +33,7 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-obsidian overflow-hidden">
+      <ThemeToggle />
       <GhostLine />
 
       <HeroSection heroImage={HERO_IMAGE} />

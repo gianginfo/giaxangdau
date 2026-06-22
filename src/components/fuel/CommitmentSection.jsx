@@ -8,7 +8,7 @@ const commitments = [
     title: "Chất lượng đảm bảo",
     description: "Nhiên liệu đạt tiêu chuẩn chất lượng quốc gia, được kiểm định nghiêm ngặt trước khi phân phối.",
     accent: "text-lime",
-    bg: "bg-[#D1FF52]/10",
+    bg: "bg-lime-10",
   },
   {
     icon: Heart,
@@ -53,7 +53,7 @@ export default function CommitmentSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group relative bg-[#111113] border border-[#1e1e22] rounded-sm p-6 md:p-8 hover:border-[#D1FF52]/20 transition-all duration-500"
+              className="group relative bg-card border border-card rounded-sm p-6 md:p-8 hover:border-lime-20 transition-all duration-500"
             >
               <div className={`w-10 h-10 rounded-sm ${item.bg} flex items-center justify-center mb-6`}>
                 <Icon className={`w-5 h-5 ${item.accent}`} />

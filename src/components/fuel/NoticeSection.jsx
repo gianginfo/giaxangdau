@@ -19,7 +19,7 @@ export default function NoticeSection({ detailImage }) {
             alt="Close-up of fuel droplet on steel"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B]/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-80)] via-transparent to-transparent" />
         </motion.div>
 
         {/* Notice Content */}
@@ -36,7 +36,7 @@ export default function NoticeSection({ detailImage }) {
           </h2>
 
           <div className="space-y-5">
-            <div className="flex gap-4 p-5 bg-[#111113] border border-[#1e1e22] rounded-sm">
+            <div className="flex gap-4 p-5 bg-card border border-card rounded-sm">
               <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-[#D1FF52]/10 flex items-center justify-center">
                 <Info className="w-4 h-4 text-lime" />
               </div>
@@ -48,7 +48,7 @@ export default function NoticeSection({ detailImage }) {
               </div>
             </div>
 
-            <div className="flex gap-4 p-5 bg-[#111113] border border-[#1e1e22] rounded-sm">
+            <div className="flex gap-4 p-5 bg-card border border-card rounded-sm">
               <div className="flex-shrink-0 w-8 h-8 rounded-sm bg-orange-500/10 flex items-center justify-center">
                 <AlertTriangle className="w-4 h-4 text-orange-400" />
               </div>

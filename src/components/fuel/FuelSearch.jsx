@@ -101,8 +101,8 @@ export default function FuelSearch() {
       >
         <span className="text-lime text-xs uppercase tracking-[0.3em] font-body block mb-3">Tra cứu nhanh</span>
         <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95]">
-          Tìm giá<br />
-          <span className="text-concrete">theo vùng & ngày</span>
+          GIÁ BÁN LẺ<br />
+          <span className="text-concrete">XĂNG DẦU</span>
         </h2>
       </motion.div>
 
@@ -112,7 +112,7 @@ export default function FuelSearch() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="bg-[#111113] border border-[#1e1e22] rounded-sm p-5 md:p-6 mb-8"
+        className="bg-card border border-card rounded-sm p-5 md:p-6 mb-8"
       >
         <div className="flex flex-col gap-5">
           {/* Top row: search + date */}
@@ -125,7 +125,7 @@ export default function FuelSearch() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Tìm theo tên nhiên liệu (vd: RON 95, Diesel...)"
-                className="w-full bg-[#0A0A0B] border border-[#2a2a2e] rounded-sm pl-11 pr-10 py-3 text-parchment text-sm font-body placeholder:text-[#555] focus:outline-none focus:border-[#D1FF52]/50 transition-colors"
+                className="w-full bg-obsidian border border-input-soft rounded-sm pl-11 pr-10 py-3 text-parchment text-sm font-body placeholder:text-concrete focus:outline-none focus:border-lime-50 transition-colors"
               />
               {query && (
                 <button
@@ -145,7 +145,7 @@ export default function FuelSearch() {
                 value={date}
                 max={todayStr()}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full bg-[#0A0A0B] border border-[#2a2a2e] rounded-sm pl-11 pr-4 py-3 text-parchment text-sm font-body focus:outline-none focus:border-[#D1FF52]/50 transition-colors [color-scheme:dark]"
+                className="w-full bg-obsidian border border-input-soft rounded-sm pl-11 pr-4 py-3 text-parchment text-sm font-body focus:outline-none focus:border-lime-50 transition-colors"
               />
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function FuelSearch() {
             {/* Zone filter */}
             <div className="flex items-center gap-2">
               <span className="text-concrete text-[11px] uppercase tracking-[0.15em] font-body mr-1">Vùng:</span>
-              <div className="flex bg-[#0A0A0B] border border-[#2a2a2e] rounded-sm p-1">
+              <div className="flex bg-obsidian border border-input-soft rounded-sm p-1">
                 {ZONE_FILTERS.map((zf) => (
                   <button
                     key={zf.key}
@@ -195,7 +195,7 @@ export default function FuelSearch() {
       )}
 
       {error && !loading && (
-        <div className="flex items-center gap-3 p-5 bg-[#111113] border border-orange-500/30 rounded-sm">
+        <div className="flex items-center gap-3 p-5 bg-card border border-orange-500/30 rounded-sm">
           <AlertCircle className="w-5 h-5 text-orange-400 flex-shrink-0" />
           <p className="text-concrete text-sm font-body">{error}</p>
         </div>

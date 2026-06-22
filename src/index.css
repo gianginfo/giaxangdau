@@ -62,26 +62,58 @@
   }
 }
 
+@layer base {
+  :root {
+    --bg: #0A0A0B;
+    --fg: #F4F4F1;
+    --muted: #8E8E93;
+    --faint: #2a2a2e;
+    --card: #111113;
+    --card-border: #1e1e22;
+    --input-border: #2a2a2e;
+    --lime: #D1FF52;
+    --lime-fg: #0A0A0B;
+    --lime-10: rgba(209, 255, 82, 0.1);
+    --lime-20: rgba(209, 255, 82, 0.2);
+    --lime-30: rgba(209, 255, 82, 0.3);
+    --lime-50: rgba(209, 255, 82, 0.5);
+    --bg-80: rgba(10, 10, 11, 0.85);
+    --bg-60: rgba(10, 10, 11, 0.6);
+  }
+
+  .light {
+    --bg: #F5F5F2;
+    --fg: #0A0A0B;
+    --muted: #6B6B70;
+    --faint: #E8E8E3;
+    --card: #FFFFFF;
+    --card-border: #E2E2DD;
+    --input-border: #D0D0CC;
+    --lime: #4D7A00;
+    --lime-fg: #FFFFFF;
+    --lime-10: rgba(77, 122, 0, 0.12);
+    --lime-20: rgba(77, 122, 0, 0.18);
+    --lime-30: rgba(77, 122, 0, 0.3);
+    --lime-50: rgba(77, 122, 0, 0.5);
+    --bg-80: rgba(245, 245, 242, 0.88);
+    --bg-60: rgba(245, 245, 242, 0.65);
+  }
+}
+
 @layer utilities {
-  .text-lime {
-    color: #D1FF52;
-  }
-  .bg-lime {
-    background-color: #D1FF52;
-  }
-  .border-lime {
-    border-color: #D1FF52;
-  }
-  .text-obsidian {
-    color: #0A0A0B;
-  }
-  .bg-obsidian {
-    background-color: #0A0A0B;
-  }
-  .text-parchment {
-    color: #F4F4F1;
-  }
-  .text-concrete {
-    color: #8E8E93;
-  }
+  .text-lime { color: var(--lime); }
+  .bg-lime { background-color: var(--lime); }
+  .border-lime { border-color: var(--lime); }
+  .text-obsidian { color: var(--lime-fg); }
+  .bg-obsidian { background-color: var(--bg); }
+  .text-parchment { color: var(--fg); }
+  .text-concrete { color: var(--muted); }
+  .text-faint { color: var(--faint); }
+  .bg-card { background-color: var(--card); }
+  .border-card { border-color: var(--card-border); }
+  .border-input-soft { border-color: var(--input-border); }
+  .bg-lime-10 { background-color: var(--lime-10); }
+  .border-lime-20 { border-color: var(--lime-20); }
+  .border-lime-30 { border-color: var(--lime-30); }
+  .border-lime-50 { border-color: var(--lime-50); }
 }
