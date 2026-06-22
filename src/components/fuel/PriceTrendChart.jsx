@@ -79,10 +79,10 @@ function CustomTooltip({ active, payload, label }) {
 
 export default function PriceTrendChart({ prices, loading }) {
   const [zone, setZone] = useState(1);
-  const [days, setDays] = useState(30);
+  const [months, setMonths] = useState(6);
   const data = useMemo(
-    () => (loading ? [] : generateTrend(prices, zone, days)),
-    [prices, zone, days, loading]
+    () => (loading ? [] : generateTrend(prices, zone, months * 30)),
+    [prices, zone, months, loading]
   );
 
   return (
@@ -96,7 +96,7 @@ export default function PriceTrendChart({ prices, loading }) {
       >
         <div>
           <span className="text-lime text-xs uppercase tracking-[0.3em] font-body block mb-3">
-            Xu hướng {days} ngày
+            Xu hướng {months} tháng
           </span>
           <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95]">
             Biến động
@@ -121,17 +121,17 @@ export default function PriceTrendChart({ prices, loading }) {
             ))}
           </div>
           <div className="flex items-center gap-1 bg-card border border-card rounded-sm p-1">
-            {[7, 30, 90].map((d) => (
+            {[3, 6, 9, 12, 24].map((m) => (
               <button
-                key={d}
-                onClick={() => setDays(d)}
-                className={`px-4 py-2 text-xs uppercase tracking-wider font-body rounded-sm transition-all ${
-                  days === d
+                key={m}
+                onClick={() => setMonths(m)}
+                className={`px-3 py-2 text-xs uppercase tracking-wider font-body rounded-sm transition-all ${
+                  months === m
                     ? "bg-lime text-obsidian"
                     : "text-concrete hover:text-parchment"
                 }`}
               >
-                {d} ngày
+                {m} tháng
               </button>
             ))}
           </div>
@@ -160,7 +160,7 @@ export default function PriceTrendChart({ prices, loading }) {
                 dataKey="date"
                 stroke="var(--muted)"
                 tick={{ fontSize: 11, fontFamily: "Inter" }}
-                interval={Math.floor(days / 6)}
+                interval={Math.floor((months * 30) / 6)}
                 tickLine={false}
                 axisLine={{ stroke: "var(--faint)" }}
               />
