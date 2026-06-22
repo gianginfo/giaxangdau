@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   LineChart,
@@ -10,49 +10,9 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { base44 } from "@/api/base44Client";
 
-const PALETTE = ["#D1FF52", "#39E5E5", "#FF8FB1", "#FFA94D", "#A78BFA", "#34D399"];
-
-function seededRandom(seed) {
-  const x = Math.sin(seed * 999) * 10000;
-  return x - Math.floor(x);
-}
-
-function generateTrend(prices, zone, days = 30) {
-  const key = zone === 2 ? "price_zone_2" : "price_zone_1";
-
-  const trends = prices.map((p, i) => {
-    const current = p[key];
-    const deltas = [];
-    for (let d = 0; d < days - 1; d++) {
-      const r = seededRandom(i * 31 + d) - 0.5;
-      deltas.push(Math.round(r * current * 0.02));
-    }
-    const series = [current];
-    let v = current;
-    for (let d = deltas.length - 1; d >= 0; d--) {
-      v = v - deltas[d];
-      series.unshift(v);
-    }
-    return { name: p.name, series };
-  });
-
-  const data = [];
-  for (let d = 0; d < days; d++) {
-    const date = new Date();
-    date.setDate(date.getDate() - (days - 1 - d));
-    const point = {
-      date: `${String(date.getDate()).padStart(2, "0")}/${String(
-        date.getMonth() + 1
-      ).padStart(2, "0")}/${String(date.getFullYear())}`,
-    };
-    trends.forEach((t) => {
-      point[t.name] = t.series[d];
-    });
-    data.push(point);
-  }
-  return data;
-}
+const PALETTE = ["#D1FF52", "#39E5E5", "#FF8FB1", "#FFA94D", "#A78BFA", "#34D399", "#60A5FA", "#F472B6"];
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -77,13 +37,32 @@ function CustomTooltip({ active, payload, label }) {
   );
 }
 
-export default function PriceTrendChart({ prices, loading }) {
+export default function PriceTrendChart() {
   const [zone, setZone] = useState(1);
   const [months, setMonths] = useState(6);
-  const data = useMemo(
-    () => (loading ? [] : generateTrend(prices, zone, months * 30)),
-    [prices, zone, months, loading]
-  );
+  const [data, setData] = useState([]);
+  const [fuelNames, setFuelNames] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchHistory() {
+      setLoading(true);
+      try {
+        const res = await base44.functions.invoke("getPriceHistory", { months, zone });
+        if (!cancelled) {
+          setData(res.data.data || []);
+          setFuelNames(res.data.fuelNames || []);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    fetchHistory();
+    return () => { cancelled = true; };
+  }, [months, zone]);
 
   return (
     <section className="relative px-6 md:px-12 lg:px-[8vw] py-[10vh]">
@@ -149,6 +128,10 @@ export default function PriceTrendChart({ prices, loading }) {
           <div className="h-[300px] md:h-[400px] flex items-center justify-center">
             <div className="w-8 h-8 border-4 border-card border-t-lime rounded-full animate-spin" />
           </div>
+        ) : data.length === 0 ? (
+          <div className="h-[300px] md:h-[400px] flex items-center justify-center">
+            <p className="text-concrete text-sm font-body">Chưa có dữ liệu cho khoảng thời gian này</p>
+          </div>
         ) : (
           <ResponsiveContainer width="100%" height={380}>
             <LineChart
@@ -160,7 +143,7 @@ export default function PriceTrendChart({ prices, loading }) {
                 dataKey="date"
                 stroke="var(--muted)"
                 tick={{ fontSize: 11, fontFamily: "Inter" }}
-                interval={Math.floor((months * 30) / 6)}
+                interval={Math.max(0, Math.floor(data.length / 6) - 1)}
                 tickLine={false}
                 axisLine={{ stroke: "var(--faint)" }}
               />
@@ -180,15 +163,16 @@ export default function PriceTrendChart({ prices, loading }) {
                 }}
                 iconType="circle"
               />
-              {prices.map((p, i) => (
+              {fuelNames.map((name, i) => (
                 <Line
-                  key={p.id}
+                  key={name}
                   type="monotone"
-                  dataKey={p.name}
+                  dataKey={name}
                   stroke={PALETTE[i % PALETTE.length]}
                   strokeWidth={2}
                   dot={false}
                   activeDot={{ r: 4 }}
+                  connectNulls
                 />
               ))}
             </LineChart>

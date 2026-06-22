@@ -1,0 +1,43 @@
+{
+  "name": "FuelPriceHistory",
+  "type": "object",
+  "properties": {
+    "snapshot_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Ng\u00e0y \u00e1p d\u1ee5ng gi\u00e1 (YYYY-MM-DD)"
+    },
+    "name": {
+      "type": "string",
+      "description": "T\u00ean m\u1eb7t h\u00e0ng nhi\u00ean li\u1ec7u"
+    },
+    "fuel_type": {
+      "type": "string",
+      "enum": [
+        "gasoline",
+        "diesel",
+        "kerosene"
+      ],
+      "description": "Lo\u1ea1i nhi\u00ean li\u1ec7u"
+    },
+    "price_zone_1": {
+      "type": "number",
+      "description": "Gi\u00e1 V\u00f9ng 1 (\u0111\u1ed3ng/l\u00edt)"
+    },
+    "price_zone_2": {
+      "type": "number",
+      "description": "Gi\u00e1 V\u00f9ng 2 (\u0111\u1ed3ng/l\u00edt)"
+    },
+    "sort_order": {
+      "type": "number",
+      "description": "Th\u1ee9 t\u1ef1 hi\u1ec3n th\u1ecb"
+    }
+  },
+  "required": [
+    "snapshot_date",
+    "name",
+    "fuel_type",
+    "price_zone_1",
+    "price_zone_2"
+  ]
+}

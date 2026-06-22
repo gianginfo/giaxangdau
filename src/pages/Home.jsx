@@ -39,7 +39,7 @@ export default function Home() {
 
       <HeroSection heroImage={HERO_IMAGE} />
       <FuelSearch />
-      <PriceTrendChart prices={prices} loading={loading} />
+      <PriceTrendChart />
       <PriceTable prices={prices} loading={loading} />
       <NoticeSection detailImage={DETAIL_IMAGE} />
       <CommitmentSection />
