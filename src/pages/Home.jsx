@@ -40,9 +40,9 @@ export default function Home() {
       <GhostLine />
 
       <HeroSection heroImage={HERO_IMAGE} />
+      <PriceCalendar />
       <FuelSearch />
       <PriceTrendChart />
-      <PriceCalendar />
       <SeoSchema />
       <PriceTable prices={prices} loading={loading} />
       <NoticeSection detailImage={DETAIL_IMAGE} />
