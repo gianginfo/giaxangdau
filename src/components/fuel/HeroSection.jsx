@@ -15,17 +15,17 @@ export default function HeroSection({ heroImage }) {
           {/* Logo */}
           <div className="mb-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-sm bg-lime flex items-center justify-center hidden">
-                <span className="text-obsidian font-display font-black text-lg tracking-tighter hidden">TP</span>
-              </div>
-              <span className="text-parchment font-display font-semibold text-xl tracking-tight hidden">PETRO</span>
+              
+
+              
+              
             </div>
           </div>
 
           {/* Title */}
           <h1 className="font-display font-black text-parchment leading-[0.9] tracking-[-0.04em]">
-            <span className="block text-[clamp(2rem,6vw,5rem)] hidden">THÔNG BÁO</span>
-            <span className="block text-[clamp(2rem,6vw,5rem)] hidden">ĐIỀU CHỈNH</span>
+            
+            
             <span className="block text-lime text-[clamp(2.5rem,7vw,6rem)] mt-2">GIÁ BÁN LẺ</span>
             <span className="block text-[clamp(2rem,5vw,4rem)] text-concrete mt-1">XĂNG DẦU</span>
           </h1>
@@ -37,24 +37,24 @@ export default function HeroSection({ heroImage }) {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 flex flex-wrap items-center gap-4">
             
-            <div className="flex items-center gap-2 bg-[#141416] border border-[#2a2a2e] rounded-sm px-5 py-3 hidden">
-              <Clock className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg">15:00</span>
-            </div>
-            <div className="flex items-center gap-2 bg-[#141416] border border-[#2a2a2e] rounded-sm px-5 py-3 hidden">
-              <Calendar className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg hidden">04/06/2026</span>
-            </div>
+            
+
+
+            
+            
+
+
+            
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 text-concrete text-sm font-body tracking-wide uppercase hidden">
-            
-            Thay đổi mới nhất · Áp dụng toàn quốc
-          </motion.p>
+          
+
+
+
+
+
+
+          
         </motion.div>
       </div>
 
@@ -84,7 +84,7 @@ export default function HeroSection({ heroImage }) {
         className="absolute bottom-8 left-6 md:left-12 lg:left-[8vw] z-10 flex items-center gap-3">
         
         <div className="w-px h-12 bg-gradient-to-b from-lime to-transparent" />
-        <span className="text-concrete text-xs uppercase tracking-[0.2em] font-body hidden">Cuộn xuống</span>
+        
       </motion.div>
     </section>);
 

@@ -32,11 +32,11 @@ export default function PriceTable({ prices, loading }) {
         transition={{ duration: 0.6 }}
         className="mb-12">
         
-        <span className="text-lime text-xs uppercase tracking-[0.3em] font-body block mb-3 hidden">Bảng giá chi tiết</span>
-        <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95] hidden">
-          06 mặt hàng<br />
-          <span className="text-concrete hidden">nhiên liệu</span>
-        </h2>
+        
+        
+
+
+        
       </motion.div>
 
       {/* Price cards grid */}
