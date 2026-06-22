@@ -20,12 +20,8 @@ export default function PriceCalendar() {
   useEffect(() => {
     async function fetchDates() {
       try {
-        const records = await base44.entities.FuelPriceHistory.list("snapshot_date", 5000);
-        const dates = {};
-        records.forEach(r => {
-          dates[r.snapshot_date] = (dates[r.snapshot_date] || 0) + 1;
-        });
-        setAdjustmentDates(dates);
+        const res = await base44.functions.invoke("getAdjustmentDates", {});
+        setAdjustmentDates(res.data.adjustmentDates || {});
       } catch (e) {
         console.error(e);
       } finally {
