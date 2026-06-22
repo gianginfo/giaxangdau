@@ -41,7 +41,7 @@ export default function HeroSection({ heroImage }) {
               <Clock className="w-4 h-4 text-lime" />
               <span className="text-parchment font-display font-semibold text-lg">15:00</span>
             </div>
-            <div className="flex items-center gap-2 bg-[#141416] border border-[#2a2a2e] rounded-sm px-5 py-3">
+            <div className="flex items-center gap-2 bg-[#141416] border border-[#2a2a2e] rounded-sm px-5 py-3 hidden">
               <Calendar className="w-4 h-4 text-lime" />
               <span className="text-parchment font-display font-semibold text-lg hidden">04/06/2026</span>
             </div>
