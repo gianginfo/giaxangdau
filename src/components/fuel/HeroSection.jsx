@@ -16,7 +16,7 @@ export default function HeroSection({ heroImage }) {
           <div className="mb-8">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-sm bg-lime flex items-center justify-center">
-                <span className="text-obsidian font-display font-black text-lg tracking-tighter">TP</span>
+                <span className="text-obsidian font-display font-black text-lg tracking-tighter hidden">TP</span>
               </div>
               <span className="text-parchment font-display font-semibold text-xl tracking-tight">PETRO</span>
             </div>
