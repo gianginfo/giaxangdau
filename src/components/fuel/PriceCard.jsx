@@ -6,7 +6,7 @@ function formatPrice(price) {
   return new Intl.NumberFormat("vi-VN").format(price);
 }
 
-export default function PriceCard({ item, index }) {
+export default function PriceCard({ item, index, change }) {
   const diff = item.price_zone_2 - item.price_zone_1;
   const isUp = diff > 0;
 
@@ -50,14 +50,28 @@ export default function PriceCard({ item, index }) {
             <p className="text-parchment font-display font-bold text-xl md:text-2xl tracking-tight">
               {formatPrice(item.price_zone_1)}
             </p>
-            <p className="text-concrete text-[11px] mt-0.5">đ/lít</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <p className="text-concrete text-[11px]">đ/lít</p>
+              {change && change.change_zone_1 !== 0 && (
+                <span className={`text-[11px] font-body font-medium ${change.change_zone_1 > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  {change.change_zone_1 > 0 ? "▲" : "▼"} {formatPrice(Math.abs(change.change_zone_1))}
+                </span>
+              )}
+            </div>
           </div>
           <div>
             <p className="text-concrete text-[11px] uppercase tracking-[0.15em] font-body mb-1">Vùng 2</p>
             <p className="text-lime font-display font-bold text-xl md:text-2xl tracking-tight">
               {formatPrice(item.price_zone_2)}
             </p>
-            <p className="text-concrete text-[11px] mt-0.5">đ/lít</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <p className="text-concrete text-[11px]">đ/lít</p>
+              {change && change.change_zone_2 !== 0 && (
+                <span className={`text-[11px] font-body font-medium ${change.change_zone_2 > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  {change.change_zone_2 > 0 ? "▲" : "▼"} {formatPrice(Math.abs(change.change_zone_2))}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

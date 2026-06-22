@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Calendar, Loader2, AlertCircle, ArrowUpDown, X } from "lucide-react";
 import PriceCard from "./PriceCard";
+import { base44 } from "@/api/base44Client";
 
 function formatPrice(price) {
   return new Intl.NumberFormat("vi-VN").format(price);
@@ -47,6 +48,7 @@ export default function FuelSearch() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [changes, setChanges] = useState({});
 
   const fetchData = useCallback(async (selectedDate) => {
     setLoading(true);
@@ -72,6 +74,18 @@ export default function FuelSearch() {
   useEffect(() => {
     fetchData(date);
   }, [date, fetchData]);
+
+  useEffect(() => {
+    async function fetchChanges() {
+      try {
+        const res = await base44.functions.invoke("getPriceChanges", { date });
+        setChanges(res.data.changes || {});
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    fetchChanges();
+  }, [date]);
 
   // Filter + sort
   const filtered = useMemo(() => {
@@ -214,7 +228,7 @@ export default function FuelSearch() {
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map((item, index) => (
-                <PriceCard key={item.id} item={item} index={index} />
+                <PriceCard key={item.id} item={item} index={index} change={changes[item.name]} />
               ))}
             </div>
           ) : (

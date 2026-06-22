@@ -10,6 +10,8 @@ import NoticeSection from "@/components/fuel/NoticeSection";
 import CommitmentSection from "@/components/fuel/CommitmentSection";
 import SourcesSection from "@/components/fuel/SourcesSection";
 import FooterSection from "@/components/fuel/FooterSection";
+import PriceCalendar from "@/components/fuel/PriceCalendar";
+import SeoSchema from "@/components/fuel/SeoSchema";
 
 const HERO_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fdadf94/30b67f6e2_generated_fa13593e.png";
 const DETAIL_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fdadf94/c9bf7f5e3_generated_a6c47e0b.png";
@@ -40,6 +42,8 @@ export default function Home() {
       <HeroSection heroImage={HERO_IMAGE} />
       <FuelSearch />
       <PriceTrendChart />
+      <PriceCalendar />
+      <SeoSchema />
       <PriceTable prices={prices} loading={loading} />
       <NoticeSection detailImage={DETAIL_IMAGE} />
       <CommitmentSection />
