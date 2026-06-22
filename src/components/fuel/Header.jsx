@@ -3,18 +3,18 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 
 const LOGO_URL =
-  "https://media.base44.com/images/public/6a396806623dcf432fdadf94/c5cd2a832_Gemini_Generated_Image_grdgk1grdgk1grdg.png";
+  "https://media.base44.com/images/public/6a396806623dcf432fdadf94/ce4838d6e_fuelvn-removebg-preview.png";
 
 export default function Header() {
   const { theme, toggle } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-[var(--bg-80)] backdrop-blur-md border-b border-card">
-      <div className="flex items-center justify-between px-6 md:px-12 lg:px-[8vw] h-16">
+      <div className="flex items-center justify-between px-6 md:px-12 lg:px-[8vw] h-20">
         <img
           src={LOGO_URL}
           alt="fuel.vn — Fuel Logistics Services"
-          className="h-8 md:h-9 w-auto object-contain"
+          className="h-12 md:h-14 w-auto object-contain"
           style={theme === "dark" ? { filter: "brightness(1.8) saturate(1.15)" } : undefined}
         />
         <button
