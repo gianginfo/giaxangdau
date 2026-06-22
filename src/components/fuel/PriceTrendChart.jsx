@@ -18,8 +18,7 @@ function seededRandom(seed) {
   return x - Math.floor(x);
 }
 
-function generateTrend(prices, zone) {
-  const days = 30;
+function generateTrend(prices, zone, days = 30) {
   const key = zone === 2 ? "price_zone_2" : "price_zone_1";
 
   const trends = prices.map((p, i) => {
@@ -80,9 +79,10 @@ function CustomTooltip({ active, payload, label }) {
 
 export default function PriceTrendChart({ prices, loading }) {
   const [zone, setZone] = useState(1);
+  const [days, setDays] = useState(30);
   const data = useMemo(
-    () => (loading ? [] : generateTrend(prices, zone)),
-    [prices, zone, loading]
+    () => (loading ? [] : generateTrend(prices, zone, days)),
+    [prices, zone, days, loading]
   );
 
   return (
@@ -96,28 +96,45 @@ export default function PriceTrendChart({ prices, loading }) {
       >
         <div>
           <span className="text-lime text-xs uppercase tracking-[0.3em] font-body block mb-3">
-            Xu hướng 30 ngày
+            Xu hướng {days} ngày
           </span>
           <h2 className="font-display font-black text-parchment text-3xl md:text-5xl tracking-[-0.03em] leading-[0.95]">
             Biến động
             <br />
-            <span className="text-concrete">giá nhiên liệu</span>
+            <span className="text-concrete">giá xăng dầu</span>
           </h2>
         </div>
-        <div className="flex items-center gap-1 bg-card border border-card rounded-sm p-1">
-          {[1, 2].map((z) => (
-            <button
-              key={z}
-              onClick={() => setZone(z)}
-              className={`px-4 py-2 text-xs uppercase tracking-wider font-body rounded-sm transition-all ${
-                zone === z
-                  ? "bg-lime text-obsidian"
-                  : "text-concrete hover:text-parchment"
-              }`}
-            >
-              Vùng {z}
-            </button>
-          ))}
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-1 bg-card border border-card rounded-sm p-1">
+            {[1, 2].map((z) => (
+              <button
+                key={z}
+                onClick={() => setZone(z)}
+                className={`px-4 py-2 text-xs uppercase tracking-wider font-body rounded-sm transition-all ${
+                  zone === z
+                    ? "bg-lime text-obsidian"
+                    : "text-concrete hover:text-parchment"
+                }`}
+              >
+                Vùng {z}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-1 bg-card border border-card rounded-sm p-1">
+            {[7, 30, 90].map((d) => (
+              <button
+                key={d}
+                onClick={() => setDays(d)}
+                className={`px-4 py-2 text-xs uppercase tracking-wider font-body rounded-sm transition-all ${
+                  days === d
+                    ? "bg-lime text-obsidian"
+                    : "text-concrete hover:text-parchment"
+                }`}
+              >
+                {d} ngày
+              </button>
+            ))}
+          </div>
         </div>
       </motion.div>
 
@@ -143,7 +160,7 @@ export default function PriceTrendChart({ prices, loading }) {
                 dataKey="date"
                 stroke="var(--muted)"
                 tick={{ fontSize: 11, fontFamily: "Inter" }}
-                interval={4}
+                interval={Math.floor(days / 6)}
                 tickLine={false}
                 axisLine={{ stroke: "var(--faint)" }}
               />
