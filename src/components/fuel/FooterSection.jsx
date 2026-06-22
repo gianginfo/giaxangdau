@@ -51,12 +51,12 @@ export default function FooterSection() {
 
       {/* Copyright */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between pt-8 gap-4">
-        <div className="flex items-center gap-3 hidden">
-          <div className="w-8 h-8 rounded-sm bg-lime flex items-center justify-center hidden">
-            <span className="text-obsidian font-display font-black text-xs tracking-tighter">TP</span>
-          </div>
-          <span className="text-parchment font-display font-semibold text-sm tracking-tight hidden">TP PETRO</span>
-        </div>
+        
+
+
+
+
+        
         <p className="text-concrete text-xs font-body">
           © 2026 TP Petro. Mọi quyền được bảo lưu.
         </p>
