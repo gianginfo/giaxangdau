@@ -15,10 +15,10 @@ export default function HeroSection({ heroImage }) {
           {/* Logo */}
           <div className="mb-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-sm bg-lime flex items-center justify-center">
+              <div className="w-10 h-10 rounded-sm bg-lime flex items-center justify-center hidden">
                 <span className="text-obsidian font-display font-black text-lg tracking-tighter hidden">TP</span>
               </div>
-              <span className="text-parchment font-display font-semibold text-xl tracking-tight">PETRO</span>
+              <span className="text-parchment font-display font-semibold text-xl tracking-tight hidden">PETRO</span>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export default function HeroSection({ heroImage }) {
         className="absolute bottom-8 left-6 md:left-12 lg:left-[8vw] z-10 flex items-center gap-3">
         
         <div className="w-px h-12 bg-gradient-to-b from-lime to-transparent" />
-        <span className="text-concrete text-xs uppercase tracking-[0.2em] font-body">Cuộn xuống</span>
+        <span className="text-concrete text-xs uppercase tracking-[0.2em] font-body hidden">Cuộn xuống</span>
       </motion.div>
     </section>);
 
