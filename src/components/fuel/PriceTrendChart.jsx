@@ -44,7 +44,7 @@ function generateTrend(prices, zone, days = 30) {
     const point = {
       date: `${String(date.getDate()).padStart(2, "0")}/${String(
         date.getMonth() + 1
-      ).padStart(2, "0")}`,
+      ).padStart(2, "0")}/${String(date.getFullYear())}`,
     };
     trends.forEach((t) => {
       point[t.name] = t.series[d];
