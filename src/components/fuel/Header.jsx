@@ -11,12 +11,20 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-[var(--bg-80)] backdrop-blur-md border-b border-card">
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-[8vw] h-20 md:h-24">
-        <img
-          src={LOGO_URL}
-          alt="fuel.vn — Fuel Logistics Services"
-          className="h-12 md:h-16 w-auto object-contain"
-          style={theme === "dark" ? { filter: "brightness(1.8) saturate(1.15)" } : undefined}
-        />
+        <a href="https://fuel.vn" target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
+          <img
+            src={LOGO_URL}
+            alt="fuel.vn — Fuel Logistics Services"
+            className="h-12 md:h-16 w-auto object-contain"
+            style={theme === "dark" ? { filter: "brightness(1.8) saturate(1.15)" } : undefined}
+          />
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="https://fuel.vn" className="text-parchment text-sm font-body hover:text-lime transition-colors">Trang chủ</a>
+          <a href="https://fuel.vn/about" className="text-parchment text-sm font-body hover:text-lime transition-colors">Giới thiệu</a>
+          <a href="https://fuel.vn/gia-xang-dau/" className="text-parchment text-sm font-body hover:text-lime transition-colors">Giá xăng dầu</a>
+          <a href="https://fuel.vn/contact" className="text-parchment text-sm font-body hover:text-lime transition-colors">Liên hệ</a>
+        </nav>
         <button
           onClick={toggle}
           aria-label="Chuyển chế độ sáng/tối"
