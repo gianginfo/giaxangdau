@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Clock, Calendar } from "lucide-react";
 
 export default function HeroSection({ heroImage }) {
   return (
@@ -12,37 +11,7 @@ export default function HeroSection({ heroImage }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Title */}
-          <h1 className="font-display font-black text-parchment leading-[0.9] tracking-[-0.04em]">
-            <span className="block text-[clamp(2rem,6vw,5rem)]">THÔNG BÁO</span>
-            <span className="block text-[clamp(2rem,6vw,5rem)]">ĐIỀU CHỈNH</span>
-          </h1>
 
-          {/* Effective Date */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
-            <div className="flex items-center gap-2 bg-card border border-input-soft rounded-sm px-5 py-3">
-              <Clock className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg">15:00</span>
-            </div>
-            <div className="flex items-center gap-2 bg-card border border-input-soft rounded-sm px-5 py-3">
-              <Calendar className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg">04/06/2026</span>
-            </div>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 text-concrete text-sm font-body tracking-wide uppercase"
-          >
-            Thay đổi mới nhất · Áp dụng toàn quốc
-          </motion.p>
         </motion.div>
       </div>
 

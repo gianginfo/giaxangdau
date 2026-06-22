@@ -13,12 +13,12 @@ export default function FooterSection() {
         className="mb-16">
         
         <a
-          href="tel:19001510"
+          href="tel:0888764764"
           className="inline-block font-display font-black text-parchment text-[clamp(2rem,6vw,5rem)] tracking-[-0.04em] leading-none hover:text-lime transition-colors duration-500">
           
           LIÊN HỆ NGAY →
         </a>
-        <p className="text-concrete text-sm mt-4 font-body">Hotline: 1900 1510 · Hỗ trợ 24/7</p>
+        <p className="text-concrete text-sm mt-4 font-body">Hotline: 0888 764 764 · Hỗ trợ 24/7</p>
       </motion.div>
 
       {/* Footer links */}
@@ -58,7 +58,7 @@ export default function FooterSection() {
 
         
         <p className="text-concrete text-xs font-body">
-          © 2026 TP Petro. Mọi quyền được bảo lưu.
+          © 2026 Fuel.vn. Mọi quyền được bảo lưu.
         </p>
       </div>
     </footer>);
