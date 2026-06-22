@@ -53,7 +53,7 @@ export default function HeroSection({ heroImage }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 text-concrete text-sm font-body tracking-wide uppercase">
+            className="mt-6 text-concrete text-sm font-body tracking-wide uppercase hidden">
             
             Thay đổi mới nhất · Áp dụng toàn quốc
           </motion.p>

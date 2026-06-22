@@ -3,7 +3,7 @@ import React from "react";
 const SIZES = {
   sm: { svg: 28, title: "text-base", tagline: "text-[9px]" },
   md: { svg: 40, title: "text-xl", tagline: "text-[10px]" },
-  lg: { svg: 64, title: "text-3xl md:text-4xl", tagline: "text-xs md:text-sm" },
+  lg: { svg: 64, title: "text-3xl md:text-4xl", tagline: "text-xs md:text-sm" }
 };
 
 export default function FuelLogo({ size = "md" }) {
@@ -16,8 +16,8 @@ export default function FuelLogo({ size = "md" }) {
         viewBox="0 0 48 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="flex-shrink-0"
-      >
+        className="flex-shrink-0 hidden">
+        
         <defs>
           <linearGradient id="fuelTopGrad" x1="0" y1="0" x2="1" y2="0">
             <stop stopColor="#2de5c8" />
@@ -39,10 +39,10 @@ export default function FuelLogo({ size = "md" }) {
         <span className={`font-display font-bold tracking-tight text-parchment ${s.title}`}>
           uel<span className="text-concrete">.vn</span>
         </span>
-        <span className={`font-body tracking-[0.1em] uppercase text-concrete mt-1 ${s.tagline}`}>
+        <span className={`font-body tracking-[0.1em] uppercase text-concrete mt-1 hidden ${s.tagline}`}>
           Fuel Logistics Services
         </span>
       </div>
-    </div>
-  );
+    </div>);
+
 }
