@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import GhostLine from "@/components/fuel/GhostLine";
 import HeroSection from "@/components/fuel/HeroSection";
+import FuelSearch from "@/components/fuel/FuelSearch";
 import PriceTable from "@/components/fuel/PriceTable";
 import NoticeSection from "@/components/fuel/NoticeSection";
 import CommitmentSection from "@/components/fuel/CommitmentSection";
@@ -34,6 +35,7 @@ export default function Home() {
       <GhostLine />
 
       <HeroSection heroImage={HERO_IMAGE} />
+      <FuelSearch />
       <PriceTable prices={prices} loading={loading} />
       <NoticeSection detailImage={DETAIL_IMAGE} />
       <CommitmentSection />
