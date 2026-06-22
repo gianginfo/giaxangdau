@@ -121,7 +121,7 @@ export default function PriceTrendChart({ prices, loading }) {
             ))}
           </div>
           <div className="flex items-center gap-1 bg-card border border-card rounded-sm p-1">
-            {[3, 6, 9, 12, 24].map((m) => (
+            {[3, 6, 12, 24, 48].map((m) => (
               <button
                 key={m}
                 onClick={() => setMonths(m)}
