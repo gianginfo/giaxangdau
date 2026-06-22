@@ -15,48 +15,48 @@ export default function HeroSection({ heroImage }) {
           
           {/* Logo */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 hidden">
-              <div className="w-10 h-10 rounded-sm bg-lime flex items-center justify-center">
-                <span className="text-obsidian font-display font-black text-lg tracking-tighter">TP</span>
-              </div>
-              <span className="text-parchment font-display font-semibold text-xl tracking-tight">PETRO</span>
-            </div>
+            
+
+
+
+
+            
           </div>
 
           {/* Title */}
           <h1 className="font-display font-black text-parchment leading-[0.9] tracking-[-0.04em]">
-            <span className="block text-[clamp(2rem,6vw,5rem)] hidden">THÔNG BÁO</span>
-            <span className="block text-[clamp(2rem,6vw,5rem)] hidden">ĐIỀU CHỈNH</span>
+            
+            
           </h1>
           <div className="mt-4">
             <FuelLogo size="lg" />
           </div>
 
           {/* Effective Date */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4 hidden">
-            
-            <div className="flex items-center gap-2 bg-card border border-input-soft rounded-sm px-5 py-3 hidden">
-              <Clock className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg">15:00</span>
-            </div>
-            <div className="flex items-center gap-2 bg-card border border-input-soft rounded-sm px-5 py-3">
-              <Calendar className="w-4 h-4 text-lime" />
-              <span className="text-parchment font-display font-semibold text-lg">04/06/2026</span>
-            </div>
-          </motion.div>
+          
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 text-concrete text-sm font-body tracking-wide uppercase hidden">
-            
-            Thay đổi mới nhất · Áp dụng toàn quốc
-          </motion.p>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+          
+
+
+
+
+
+
+          
         </motion.div>
       </div>
 
