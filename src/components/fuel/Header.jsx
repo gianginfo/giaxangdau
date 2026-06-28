@@ -23,6 +23,7 @@ export default function Header() {
           <a href="https://fuel.vn" className="text-parchment text-sm font-body hover:text-lime transition-colors">Trang chủ</a>
           <a href="https://fuel.vn/about" className="text-parchment text-sm font-body hover:text-lime transition-colors">Giới thiệu</a>
           <a href="https://fuel.vn/gia-xang-dau/" className="text-parchment text-sm font-body hover:text-lime transition-colors">Giá xăng dầu</a>
+          <a href="https://fuel.vn/Platts/" className="text-parchment text-sm font-body hover:text-lime transition-colors">Giá Platt's Singapore</a>
           <a href="https://fuel.vn/contact" className="text-parchment text-sm font-body hover:text-lime transition-colors">Liên hệ</a>
         </nav>
         <button
