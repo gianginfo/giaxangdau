@@ -171,7 +171,7 @@ export default function PriceCalendar({ onSelectDate }) {
                       <span className="text-lime font-display font-bold text-sm">{parseInt(day)}</span>
                     </div>
                     <div>
-                      <p className="text-parchment text-sm font-body">{weekday}, {parseInt(day)}/{parseInt(m)}/{y}</p>
+                      <p className="text-parchment text-sm font-body">{weekday}, {day}/{m}/{y}</p>
                       <p className="text-concrete text-xs font-body">{adjustmentDates[d]} mặt hàng</p>
                     </div>
                   </div>

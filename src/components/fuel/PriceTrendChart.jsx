@@ -14,12 +14,17 @@ import { base44 } from "@/api/base44Client";
 
 const PALETTE = ["#D1FF52", "#39E5E5", "#FF8FB1", "#FFA94D", "#A78BFA", "#34D399", "#60A5FA", "#F472B6"];
 
+function formatDate(dateStr) {
+  const [y, m, d] = String(dateStr).split("-");
+  return `${d}/${m}/${y}`;
+}
+
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
   return (
     <div className="bg-card border border-card rounded-sm p-3 shadow-xl max-w-[260px]">
       <p className="text-concrete text-[11px] uppercase tracking-wider mb-2">
-        {label}
+        {formatDate(label)}
       </p>
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2 text-xs py-0.5">
@@ -143,6 +148,10 @@ export default function PriceTrendChart() {
                 dataKey="date"
                 stroke="var(--muted)"
                 tick={{ fontSize: 11, fontFamily: "Inter" }}
+                tickFormatter={formatDate}
+                angle={-90}
+                textAnchor="end"
+                height={80}
                 interval={Math.max(0, Math.floor(data.length / 6) - 1)}
                 tickLine={false}
                 axisLine={{ stroke: "var(--faint)" }}
