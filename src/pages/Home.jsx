@@ -13,7 +13,7 @@ import FooterSection from "@/components/fuel/FooterSection";
 import PriceCalendar from "@/components/fuel/PriceCalendar";
 import SeoSchema from "@/components/fuel/SeoSchema";
 
-const HERO_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fdadf94/30b67f6e2_generated_fa13593e.png";
+const HERO_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fdadf94/d7c7f0525_photo_2026-06-28_11-49-49.jpg";
 const DETAIL_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fdadf94/c9bf7f5e3_generated_a6c47e0b.png";
 
 export default function Home() {
