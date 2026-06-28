@@ -47,7 +47,17 @@ export default function PriceTrendChart() {
   const [months, setMonths] = useState(6);
   const [data, setData] = useState([]);
   const [fuelNames, setFuelNames] = useState([]);
+  const [hiddenFuels, setHiddenFuels] = useState(new Set());
   const [loading, setLoading] = useState(true);
+
+  function toggleFuel(name) {
+    setHiddenFuels(prev => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -169,21 +179,31 @@ export default function PriceTrendChart() {
                   fontSize: 11,
                   fontFamily: "Inter",
                   paddingTop: 12,
+                  cursor: "pointer",
                 }}
                 iconType="circle"
+                onClick={(e) => toggleFuel(e.value)}
+                formatter={(value) => (
+                  <span style={{ textDecoration: hiddenFuels.has(value) ? "line-through" : "none", opacity: hiddenFuels.has(value) ? 0.4 : 1, color: "var(--fg)" }}>
+                    {value}
+                  </span>
+                )}
               />
-              {fuelNames.map((name, i) => (
-                <Line
-                  key={name}
-                  type="monotone"
-                  dataKey={name}
-                  stroke={PALETTE[i % PALETTE.length]}
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={{ r: 4 }}
-                  connectNulls
-                />
-              ))}
+              {fuelNames.filter((name) => !hiddenFuels.has(name)).map((name) => {
+                const i = fuelNames.indexOf(name);
+                return (
+                  <Line
+                    key={name}
+                    type="monotone"
+                    dataKey={name}
+                    stroke={PALETTE[i % PALETTE.length]}
+                    strokeWidth={2}
+                    dot={false}
+                    activeDot={{ r: 4 }}
+                    connectNulls
+                  />
+                );
+              })}
             </LineChart>
           </ResponsiveContainer>
         )}
