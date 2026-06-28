@@ -4,16 +4,9 @@ Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
 
-    // Fetch all history records (paginated if needed)
-    let allRecords = [];
-    let hasMore = true;
-    let skip = 0;
-    while (hasMore) {
-      const batch = await base44.asServiceRole.entities.FuelPriceHistory.list('snapshot_date', 500, skip);
-      allRecords = allRecords.concat(batch);
-      hasMore = batch.length === 500;
-      skip += 500;
-    }
+    // Fetch all history records in one call (skip/limit pagination is unstable
+    // when sorting by the non-unique snapshot_date field — records get skipped/duplicated)
+    let allRecords = await base44.asServiceRole.entities.FuelPriceHistory.filter({}, null, 10000);
 
     // Group by date: { date: { fuelName: { price_zone_1, price_zone_2 } } }
     const byDate = {};
