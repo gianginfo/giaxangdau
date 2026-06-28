@@ -19,6 +19,7 @@ const DETAIL_IMAGE = "https://media.base44.com/images/public/6a396806623dcf432fd
 export default function Home() {
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     async function loadPrices() {
@@ -40,8 +41,8 @@ export default function Home() {
       <GhostLine />
 
       <HeroSection heroImage={HERO_IMAGE} />
-      <PriceCalendar />
-      <FuelSearch />
+      <PriceCalendar onSelectDate={setSelectedDate} />
+      <FuelSearch selectedDate={selectedDate} />
       <PriceTrendChart />
       <SeoSchema />
       <PriceTable prices={prices} loading={loading} />

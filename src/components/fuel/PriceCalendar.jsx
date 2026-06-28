@@ -9,7 +9,7 @@ const MONTH_NAMES = [
 ];
 const WEEKDAYS = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 
-export default function PriceCalendar() {
+export default function PriceCalendar({ onSelectDate }) {
   const [adjustmentDates, setAdjustmentDates] = useState({});
   const [currentMonth, setCurrentMonth] = useState(() => {
     const d = new Date();
@@ -116,19 +116,27 @@ export default function PriceCalendar() {
               if (d === null) return <div key={i} />;
               const ds = dateStr(d);
               const hasAdjustment = adjustmentDates[ds];
+              if (hasAdjustment) {
+                return (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      if (onSelectDate) onSelectDate(ds);
+                      document.getElementById("fuel-search")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="relative flex items-center justify-center h-10 rounded-sm text-sm font-body transition-colors cursor-pointer bg-lime-10 text-lime font-semibold hover:bg-lime-20"
+                  >
+                    {d}
+                    <span className="absolute bottom-1 w-1 h-1 rounded-full bg-lime" />
+                  </button>
+                );
+              }
               return (
                 <div
                   key={i}
-                  className={`relative flex items-center justify-center h-10 rounded-sm text-sm font-body transition-colors ${
-                    hasAdjustment
-                      ? "bg-lime-10 text-lime font-semibold"
-                      : "text-concrete hover:bg-obsidian"
-                  }`}
+                  className="relative flex items-center justify-center h-10 rounded-sm text-sm font-body text-concrete"
                 >
                   {d}
-                  {hasAdjustment && (
-                    <span className="absolute bottom-1 w-1 h-1 rounded-full bg-lime" />
-                  )}
                 </div>
               );
             })}

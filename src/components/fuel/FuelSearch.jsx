@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Loader2, AlertCircle, ArrowUpDown, X } from "lucide-react";
+import { Calendar, Loader2, AlertCircle, ArrowUpDown } from "lucide-react";
 import PriceCard from "./PriceCard";
 import { base44 } from "@/api/base44Client";
 
@@ -40,9 +40,9 @@ const ZONE_FILTERS = [
   { key: "zone2", label: "Vùng 2" },
 ];
 
-export default function FuelSearch() {
+export default function FuelSearch({ selectedDate }) {
   const [date, setDate] = useState(todayStr());
-  const [query, setQuery] = useState("");
+  const [selectedFuels, setSelectedFuels] = useState(new Set());
   const [zoneFilter, setZoneFilter] = useState("all");
   const [sortDir, setSortDir] = useState("asc");
   const [data, setData] = useState([]);
@@ -76,6 +76,19 @@ export default function FuelSearch() {
   }, [date, fetchData]);
 
   useEffect(() => {
+    if (selectedDate) setDate(selectedDate);
+  }, [selectedDate]);
+
+  function toggleFuel(name) {
+    setSelectedFuels(prev => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  }
+
+  useEffect(() => {
     async function fetchChanges() {
       try {
         const res = await base44.functions.invoke("getPriceChanges", { date });
@@ -90,10 +103,9 @@ export default function FuelSearch() {
   // Filter + sort
   const filtered = useMemo(() => {
     let result = [...data];
-    // Text search
-    if (query.trim()) {
-      const q = query.trim().toLowerCase();
-      result = result.filter((item) => item.name.toLowerCase().includes(q));
+    // Filter by selected fuels
+    if (selectedFuels.size > 0) {
+      result = result.filter((item) => selectedFuels.has(item.name));
     }
     // Sort by selected zone
     if (zoneFilter !== "all") {
@@ -101,10 +113,10 @@ export default function FuelSearch() {
       result.sort((a, b) => (sortDir === "asc" ? a[field] - b[field] : b[field] - a[field]));
     }
     return result;
-  }, [data, query, zoneFilter, sortDir]);
+  }, [data, selectedFuels, zoneFilter, sortDir]);
 
   return (
-    <section className="relative px-6 md:px-12 lg:px-[8vw] py-[10vh]">
+    <section id="fuel-search" className="relative px-6 md:px-12 lg:px-[8vw] py-[10vh]">
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -129,28 +141,8 @@ export default function FuelSearch() {
         className="bg-card border border-card rounded-sm p-5 md:p-6 mb-8"
       >
         <div className="flex flex-col gap-5">
-          {/* Top row: search + date */}
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Search input */}
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-concrete" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Tìm theo tên nhiên liệu (vd: RON 95, Diesel...)"
-                className="w-full bg-obsidian border border-input-soft rounded-sm pl-11 pr-10 py-3 text-parchment text-sm font-body placeholder:text-concrete focus:outline-none focus:border-lime-50 transition-colors"
-              />
-              {query && (
-                <button
-                  onClick={() => setQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-concrete hover:text-parchment transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-
+          {/* Top row: date + zone filter + sort */}
+          <div className="flex flex-col md:flex-row gap-4 md:items-center">
             {/* Date picker */}
             <div className="relative md:w-56">
               <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-lime pointer-events-none" />
@@ -162,10 +154,7 @@ export default function FuelSearch() {
                 className="w-full bg-obsidian border border-input-soft rounded-sm pl-11 pr-4 py-3 text-parchment text-sm font-body focus:outline-none focus:border-lime-50 transition-colors"
               />
             </div>
-          </div>
 
-          {/* Bottom row: zone filter + sort */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             {/* Zone filter */}
             <div className="flex items-center gap-2">
               <span className="text-concrete text-[11px] uppercase tracking-[0.15em] font-body mr-1">Vùng:</span>
@@ -197,6 +186,33 @@ export default function FuelSearch() {
               </button>
             )}
           </div>
+
+          {/* Fuel type buttons */}
+          {data.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {selectedFuels.size > 0 && (
+                <button
+                  onClick={() => setSelectedFuels(new Set())}
+                  className="px-4 py-2 text-xs font-body font-medium rounded-sm border bg-obsidian text-concrete border-input-soft hover:text-parchment hover:border-lime-30 transition-all"
+                >
+                  Tất cả
+                </button>
+              )}
+              {data.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => toggleFuel(item.name)}
+                  className={`px-4 py-2 text-xs font-body font-medium rounded-sm border transition-all ${
+                    selectedFuels.has(item.name)
+                      ? "bg-lime text-obsidian border-lime"
+                      : "bg-obsidian text-concrete border-input-soft hover:text-parchment hover:border-lime-30"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </motion.div>
 
@@ -234,7 +250,7 @@ export default function FuelSearch() {
           ) : (
             <div className="py-20 text-center">
               <p className="text-concrete text-sm font-body">
-                Không tìm thấy nhiên liệu phù hợp với "{query}"
+                Không có mặt hàng nào được chọn
               </p>
             </div>
           )}
