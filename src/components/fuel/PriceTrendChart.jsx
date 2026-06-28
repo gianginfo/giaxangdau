@@ -189,21 +189,19 @@ export default function PriceTrendChart() {
                   </span>
                 )}
               />
-              {fuelNames.filter((name) => !hiddenFuels.has(name)).map((name) => {
-                const i = fuelNames.indexOf(name);
-                return (
-                  <Line
-                    key={name}
-                    type="monotone"
-                    dataKey={name}
-                    stroke={PALETTE[i % PALETTE.length]}
-                    strokeWidth={2}
-                    dot={false}
-                    activeDot={{ r: 4 }}
-                    connectNulls
-                  />
-                );
-              })}
+              {fuelNames.map((name, i) => (
+                <Line
+                  key={name}
+                  type="monotone"
+                  dataKey={name}
+                  stroke={PALETTE[i % PALETTE.length]}
+                  strokeWidth={2}
+                  dot={false}
+                  activeDot={{ r: 4 }}
+                  connectNulls
+                  hide={hiddenFuels.has(name)}
+                />
+              ))}
             </LineChart>
           </ResponsiveContainer>
         )}
