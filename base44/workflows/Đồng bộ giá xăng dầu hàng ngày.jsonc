@@ -1,0 +1,44 @@
+{
+  "name": "\u0110\u1ed3ng b\u1ed9 gi\u00e1 x\u0103ng d\u1ea7u h\u00e0ng ng\u00e0y",
+  "description": "T\u1ef1 \u0111\u1ed9ng l\u1ea5y gi\u00e1 x\u0103ng d\u1ea7u m\u1edbi nh\u1ea5t t\u1eeb API v\u00e0 l\u01b0u v\u00e0o database l\u00fac 15:30 m\u1ed7i ng\u00e0y",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "30 8 * * *",
+      "one_time_date": null,
+      "timezone": "UTC",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "ng_b_gi_x_ng_d_u_h_ng_ng_y",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "run_function": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "syncDailyPrices",
+            "args": {}
+          },
+          "then": "end"
+        }
+      }
+    ]
+  },
+  "x-base44-migrated-from-automation": {
+    "legacy_payload_function": "syncDailyPrices"
+  }
+}
